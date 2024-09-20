@@ -43,6 +43,7 @@ public class PostingDao {
 	public ArrayList<MainPagePosting> selectTopPostingList(SqlSession sqlSession) {
 		
 		return (ArrayList)sqlSession.selectList("postingMapper.selectTopPostingList");
+	}
 
 	public ArrayList<Posting> selectSearchList(SqlSession sqlSession, String keyword) {
     

@@ -70,7 +70,6 @@
       display: flex;
       height: 100%;
       transition: transform 0.5s ease-in-out;
-      background-color: #e1ff00;
     }
 
     .slide {
@@ -252,73 +251,7 @@
           </div>
           <div class="slider-container">
             <div class="slides" id="slides">
-            
-              <div class="slide">
-              
-                <div class="prevNextButtonArea"></div>
-                
-                <div class="adContentArea">
-                  <div>
-                    <button>
-                      <img src="../resource/8억인치_TV.png" alt="TV"/>
-                    </button>
-                  </div>
-                  <div>
-                    <table>
-                      <tr>
-                        <td colspan="2">
-                          <a href="#" class="adGoodsTitle">엄청 비싼 TV</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>현재가</td>
-                        <td>100,000,000원</td>
-                      </tr>
-                      <tr>
-                        <td>입찰자</td>
-                        <td>2,201,507명</td>
-                      </tr>
-                      <tr>
-                        <td>경매기간</td>
-                        <td>2024-08-22 23:00</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-                
-                <div class="adContentArea">
-                  <div>
-                    <button>
-                      <img src="../resource/903069ba-ab95-4ba2-bf02-9f61b1dc0e86.png" alt="세상에서가장비싼운동화" />
-                    </button>
-                  </div>
-                  <div>
-                    <table>
-                      <tr>
-                        <td colspan="2">
-                          <a href="#" class="adGoodsTitle">금으로 만든 신발</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>현재가</td>
-                        <td>100,000,000원</td>
-                      </tr>
-                      <tr>
-                        <td>입찰자</td>
-                        <td>2,201,507명</td>
-                      </tr>
-                      <tr>
-                        <td>경매기간</td>
-                        <td>2024-08-22 23:00</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-                
-                <div class="prevNextButtonArea"></div>
-                
-              </div>
-              
+           
             </div>
             <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
             <button class="next" onclick="moveSlide(1)">&#10095;</button>
