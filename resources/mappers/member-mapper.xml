@@ -85,16 +85,6 @@
 	
 	
 	
-	<resultMap type="MyBid" id="myBidResultSet">
-		<result property="bidPrice" column="BID_PRICE"/>
-		<result property="bidTime" column="BID_TIME"/>
-		<result property="productName" column="PRODUCT_NAME"/>
-	</resultMap>
 	
-	<select id="selectMyBidList" resultMap="myBidResultSet">
-		SELECT BID_PRICE, BID_TIME, PRODUCT_NAME
-		FROM POSTING JOIN BID B USING (POSTING_NO)
-		WHERE b.mem_no = 2
-	</select>
 		
 </mapper>

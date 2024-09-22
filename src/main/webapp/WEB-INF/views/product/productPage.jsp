@@ -253,6 +253,16 @@
 	    font-size: 20px; font-weight: 900;
 	}
 	
+	.openModalBtn {
+		border:none;
+		background-color: #ff6262; 
+		width: 278px; height: 49px; 
+		border-radius: 25px; 
+		font-weight: 800; 
+		font-size:20px; 
+		color: white;
+	}
+	
 </style>
 </head>
 <body> 
@@ -327,7 +337,17 @@
                             <td style="text-align: right;"><input style="height: 45px; width: 150px;" type="number" id="bidPriceInput"></td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="vertical-align: bottom; text-align: right;"><button id="openModalBtn" style="border:none;background-color: #ff6262; width: 278px; height: 49px; border-radius: 25px; font-weight: 800; font-size:20px; color: white;">입찰 확정 하기</button></td>
+                            <td colspan="2" style="vertical-align: bottom; text-align: right;">
+                            
+                          	<c:choose>
+							  	<c:when test="${empty loginUser}">
+							          <button class="openModalBtn" onclick="loginPage();">입찰 확정 하기</button>
+							    </c:when>
+							    <c:otherwise>
+							    	<button id="openModalBtn" class="openModalBtn" onclick="return bidCheck();">입찰 확정 하기</button>
+							    </c:otherwise>
+							</c:choose>
+                          
                         </tr>
                     </table>
                     
@@ -472,6 +492,30 @@
             currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
             updateCarousel();
         });
+        
+        function loginPage() {
+        	location.href = "<%= contextPath %>/loginPage.me";
+        }
+        
+        function bidCheck() {
+            const bidPriceInput = document.getElementById('bidPriceInput');
+            const bidPriceValue = bidPriceInput.value;
+
+            if (bidPriceValue % ${selectPost.bidUnit} === 0 && bidPriceValue > <%= max %>) {
+                // 조건을 만족할 때만 모달 열기
+                modalOverlay.style.display = 'block';
+                modalBidPriceInput.value = bidPriceValue; // 모달의 입력값 설정
+                return true; // true 반환하여 모달이 열리게 함
+            } else if (bidPriceValue % ${selectPost.bidUnit} !== 0) {
+                alert("입찰 단위는 " + ${selectPost.bidUnit} + "원입니다.");
+                return false; // false 반환하여 모달이 열리지 않게 함
+            } else {
+                alert("현재가 이상으로 입찰 가능합니다.");
+                return false; // false 반환하여 모달이 열리지 않게 함
+            }
+        }
+
+
 
     </script>
 </body>

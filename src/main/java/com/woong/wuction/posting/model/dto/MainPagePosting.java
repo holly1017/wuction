@@ -4,7 +4,7 @@ public class MainPagePosting {
 	
 	private int postingNo;
 	private String productName;
-	private int maxPrice;
+	private long maxPrice;
 	private int bidCount;
 	private String endTime;
 	private String imgFile;
@@ -14,7 +14,7 @@ public class MainPagePosting {
 		
 	}
 	
-	public MainPagePosting(int postingNo, String productName, int maxPrice, int bidCount, String endTime,
+	public MainPagePosting(int postingNo, String productName, long maxPrice, int bidCount, String endTime,
 			String imgFile) {
 		super();
 		this.postingNo = postingNo;
@@ -41,11 +41,11 @@ public class MainPagePosting {
 		this.productName = productName;
 	}
 
-	public int getMaxPrice() {
+	public long getMaxPrice() {
 		return maxPrice;
 	}
 
-	public void setMaxPrice(int maxPrice) {
+	public void setMaxPrice(long maxPrice) {
 		this.maxPrice = maxPrice;
 	}
 

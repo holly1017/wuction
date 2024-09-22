@@ -53,7 +53,7 @@ public class BidInsertController extends HttpServlet {
 		if(result > 0) {
 			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "입찰이 등록되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/detail.pr");
+			response.sendRedirect(request.getContextPath() + "/detail.pr?postingNo=" + postingNo);
 			
 		} else {
 			request.setAttribute("errorMsg", "입찰 등록 실패하였습니다.");

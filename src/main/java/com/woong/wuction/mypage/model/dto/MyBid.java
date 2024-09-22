@@ -1,4 +1,4 @@
-package com.woong.wuction.member.model.dto;
+package com.woong.wuction.mypage.model.dto;
 
 public class MyBid {
 	private int bidPrice;

@@ -1,4 +1,4 @@
-package com.woong.wuction.member.controller;
+package com.woong.wuction.mypage.controller;
 
 import java.io.IOException;
 

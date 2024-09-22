@@ -1,4 +1,4 @@
-package com.woong.wuction.member.controller;
+package com.woong.wuction.mypage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,19 +12,19 @@ import javax.servlet.http.HttpSession;
 
 import com.woong.wuction.member.model.vo.Member;
 import com.woong.wuction.mypage.service.MyPageServiceImpl;
-import com.woong.wuction.posting.model.vo.Bid;
+import com.woong.wuction.posting.model.dto.MainPagePosting;
 
 /**
- * Servlet implementation class MyBidPageController
+ * Servlet implementation class MyPostingPageController
  */
-@WebServlet("/myBidPage.me")
-public class MyBidPageController extends HttpServlet {
+@WebServlet("/myPostingPage.me")
+public class MyPostingPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyBidPageController() {
+    public MyPostingPageController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +33,24 @@ public class MyBidPageController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * 마이페이지에서 경매게시물 페이지로 이동
+		 * 회원번호를 통해 해당 회원이 작성한 경매게시물들을 나열
+		 * 회원 번호는 session에서 가져옴
+		 * dto로 만들어둔 클래스를 따라 객체리스트로 반환 받음
+		 */
 		
-		  request.setCharacterEncoding("UTF-8");
-		   
-	      HttpSession session = request.getSession();
-	      Member user = (Member)session.getAttribute("loginUser");
-	      
-	      // DB에서 해당 사용자의 입찰 내역 조회
-	      //  => 사용자 아이디 user.getMemId()
-	      
-	      ArrayList<Bid> bidList = new MyPageServiceImpl().selectBidList(user);
-	      
-	      System.out.println(bidList);
-	      
-	      request.setAttribute("bidList", bidList);
-	      
-	      
-	      request.getRequestDispatcher("WEB-INF/views/member/myBidPage.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
 		
+		ArrayList<MainPagePosting> pList = new MyPageServiceImpl().selectPostingList(m);
+		
+		System.out.println(pList);
+	      
+	    request.setAttribute("postingList", pList);
+		
+		
+		request.getRequestDispatcher("WEB-INF/views/member/myPostingPage.jsp").forward(request, response);
 	}
 
 	/**

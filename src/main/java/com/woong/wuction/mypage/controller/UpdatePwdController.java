@@ -1,4 +1,4 @@
-package com.woong.wuction.member.controller;
+package com.woong.wuction.mypage.controller;
 
 import java.io.IOException;
 
@@ -13,16 +13,16 @@ import com.woong.wuction.member.model.vo.Member;
 import com.woong.wuction.member.service.MemberServiceImpl;
 
 /**
- * Servlet implementation class DeleteMemberController
+ * Servlet implementation class UpdatePwdController
  */
-@WebServlet("/delete.me")
-public class DeleteMemberController extends HttpServlet {
+@WebServlet("/updatePwd.me")
+public class UpdatePwdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteMemberController() {
+    public UpdatePwdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,29 +39,28 @@ public class DeleteMemberController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String id = loginUser.getMemId();
-		String pwd = request.getParameter("userPwd");
+		String newPwd = request.getParameter("newPwd");
 		
 		Member m = new Member();
 		m.setMemId(id);
-		m.setMemPwd(pwd);
+		m.setMemPwd(newPwd);
 		
-		int result = new MemberServiceImpl().deleteMember(m);
+		Member updateUser = new MemberServiceImpl().updatePassword(m);
 		
-		if(result > 0) {
-			session.invalidate();
-			
-			response.sendRedirect(request.getContextPath());
+		if(updateUser != null) {
+			session.setAttribute("loginUser", updateUser);
+			session.setAttribute("alertMsg", "비밀번호가 변경되었습니다.");
+
+			response.sendRedirect(request.getContextPath() + "/myPage.me");
 		} else {
-			session.setAttribute("alertMsg", "탈퇴 실패하였습니다.");
-			
-			response.sendRedirect(request.getContextPath());
+			request.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
+			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		
 	}
 
 }

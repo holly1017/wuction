@@ -299,7 +299,7 @@
                     slideHTML += "<div class='slide'>"
                                 + "<div class='prevNextButtonArea'></div>"
                                 + "<div class='adContentArea'>"
-                                + "<div><button><img src='resources/uploadFiles/" + posts[i].imgFile + "' alt='" + posts[i].productName + "'/></button></div>"
+                                + "<div><button onclick='productPage(" + posts[i].postingNo + ")'><img src='resources/uploadFiles/" + posts[i].imgFile + "' alt='" + posts[i].productName + "'/></button></div>"
                                 + "<div>"
                                 + "<table>"
                                 + "<tr>"
@@ -326,7 +326,7 @@
                     // 두 번째 게시물이 있을 경우 추가
                     if (i + 1 < posts.length) {
                         slideHTML += "<div class='adContentArea'>"
-                                   + "<div><button><img src='resources/uploadFiles/" + posts[i + 1].imgFile + "' alt='" + posts[i + 1].productName + "'/></button></div>"
+                                   + "<div><button onclick='productPage(" + posts[i + 1].postingNo + ")'><img src='resources/uploadFiles/" + posts[i + 1].imgFile + "' alt='" + posts[i + 1].productName + "'/></button></div>"
                                    + "<div>"
                                    + "<table>"
                                    + "<tr>"

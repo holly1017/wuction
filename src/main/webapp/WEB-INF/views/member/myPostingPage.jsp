@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<!DOCTYPE html>
 	<html>
 
@@ -211,175 +212,32 @@
 								<text>나의 경매 목록<text>
 							</div>
 							<div>
-								<button class="goodsBox goodsBox1span4">
-									<div style="background-image: url('resources/images/디올빈티지펜던트_50만원.png');">
-									</div>
-									<div>
-										<table class="goodsInfo">
-											<tr>
-												<td colspan="2">디올 빈티지 펜던트</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">현재가</td>
-												<td class="fw">500,000원</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">입찰자수</td>
-												<td>23명</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">경매기간</td>
-												<td>2024-03-21</td>
-											</tr>
-										</table>
-									</div>
-								</button>
-
-								<button class="goodsBox goodsBox5span4">
-									<div style="background-image: url('resources/images/디올빈티지펜던트_50만원.png');">
-									</div>
-									<div>
-										<table class="goodsInfo">
-											<tr>
-												<td colspan="2">디올 빈티지 펜던트</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">현재가</td>
-												<td class="fw">500,000원</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">입찰자수</td>
-												<td>23명</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">경매기간</td>
-												<td>2024-03-21</td>
-											</tr>
-										</table>
-									</div>
-								</button>
-
-								<button class="goodsBox goodsBox9span4">
-									<div style="background-image: url('resources/images/디올빈티지펜던트_50만원.png');">
-									</div>
-									<div>
-										<table class="goodsInfo">
-											<tr>
-												<td colspan="2">디올 빈티지 펜던트</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">현재가</td>
-												<td class="fw">500,000원</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">입찰자수</td>
-												<td>23명</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">경매기간</td>
-												<td>2024-03-21</td>
-											</tr>
-										</table>
-									</div>
-								</button>
-
-								<button class="goodsBox goodsBox1span4">
-									<div style="background-image: url('resources/images/디올빈티지펜던트_50만원.png');">
-									</div>
-									<div>
-										<table class="goodsInfo">
-											<tr>
-												<td colspan="2">디올 빈티지 펜던트</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">현재가</td>
-												<td class="fw">500,000원</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">입찰자수</td>
-												<td>23명</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">경매기간</td>
-												<td>2024-03-21</td>
-											</tr>
-										</table>
-									</div>
-								</button>
-
-								<button class="goodsBox goodsBox5span4">
-									<div style="background-image: url('resources/images/디올빈티지펜던트_50만원.png');">
-									</div>
-									<div>
-										<table class="goodsInfo">
-											<tr>
-												<td colspan="2">디올 빈티지 펜던트</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">현재가</td>
-												<td class="fw">500,000원</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">입찰자수</td>
-												<td>23명</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">경매기간</td>
-												<td>2024-03-21</td>
-											</tr>
-										</table>
-									</div>
-								</button>
-
-								<button class="goodsBox goodsBox9span4">
-									<div style="background-image: url('resources/images/디올빈티지펜던트_50만원.png');">
-									</div>
-									<div>
-										<table class="goodsInfo">
-											<tr>
-												<td colspan="2">디올 빈티지 펜던트</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">현재가</td>
-												<td class="fw">500,000원</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">입찰자수</td>
-												<td>23명</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">경매기간</td>
-												<td>2024-03-21</td>
-											</tr>
-										</table>
-									</div>
-								</button>
-
-								<button class="goodsBox goodsBox1span4">
-									<div style="background-image: url('resources/images/디올빈티지펜던트_50만원.png');">
-									</div>
-									<div>
-										<table class="goodsInfo">
-											<tr>
-												<td colspan="2">디올 빈티지 펜던트</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">현재가</td>
-												<td class="fw">500,000원</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">입찰자수</td>
-												<td>23명</td>
-											</tr>
-											<tr>
-												<td class="goodsInfoCategory">경매기간</td>
-												<td>2024-03-21</td>
-											</tr>
-										</table>
-									</div>
-								</button>
-
-
+								<c:forEach var="item" items="${postingList}" varStatus="status">
+								    <c:set var="boxNumber" value="${status.index % 3 * 4 + 1}" />
+								    <button class="goodsBox goodsBox${boxNumber}span4" onclick="productPage(${item.postingNo})">
+								        <div style="background-image: url('resources/uploadFiles/${item.imgFile}');"></div>
+								        <div>
+								            <table class="goodsInfo">
+								                <tr>
+								                    <td colspan="2">${item.productName}</td>
+								                </tr>
+								                <tr>
+								                    <td class="goodsInfoCategory">현재가</td>
+								                    <td class="fw">${item.maxPrice}원</td>
+								                </tr>
+								                <tr>
+								                    <td class="goodsInfoCategory">입찰자수</td>
+								                    <td>${item.bidCount}명</td>
+								                </tr>
+								                <tr>
+								                    <td class="goodsInfoCategory">경매기간</td>
+								                    <td>${item.endTime}</td>
+								                </tr>
+								            </table>
+								        </div>
+								    </button>
+								</c:forEach>
+						
 							</div>
 						</div>
 					</main>
@@ -387,6 +245,12 @@
 			</div>
 			<div></div>
 		</div>
+		
+		<script>
+			function productPage(postingNo) {
+		        location.href = "detail.pr?postingNo=" + postingNo;
+		    }
+		</script>
 	</body>
 
 	</html>

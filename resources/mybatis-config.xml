@@ -17,7 +17,7 @@
   		<typeAlias type="com.woong.wuction.posting.model.vo.Image" alias="Image"/>
   		<typeAlias type="com.woong.wuction.posting.model.vo.Bid" alias="Bid"/>
   		<typeAlias type="com.woong.wuction.posting.model.dto.MainPagePosting" alias="MainPagePosting" />
-  		<typeAlias type="com.woong.wuction.member.model.dto.MyBid" alias="MyBid"/>
+  		<typeAlias type="com.woong.wuction.mypage.model.dto.MyBid" alias="MyBid"/>
   	</typeAliases>
   	
   	<!-- mybatis에서 연동할 DB정보를 작성 -->

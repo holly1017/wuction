@@ -164,7 +164,7 @@
 	  </c:choose>
 	  
         </div>
-		<form class="search-area" method="get" action="search.pr">
+		<form class="search-area" method="get" action="<%= contextPath %>/search.pr">
 		  	<fieldset>
 	          <input
 	            type="text"
