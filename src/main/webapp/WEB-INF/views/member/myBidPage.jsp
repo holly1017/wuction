@@ -188,7 +188,7 @@
                     <th>내 입찰 가격</td>
                     <th>입찰일</td>
                   </tr>
-                  <c:forEach var="p" items="${list}">
+                  <c:forEach var="p" items="${bidList}">
 	                  <tr>
 	                    <td>${ p.productName }</td>
 	                    <td class="ta-center">${ p.bidPrice }</td>

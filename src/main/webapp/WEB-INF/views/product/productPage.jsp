@@ -334,7 +334,7 @@
                         </tr>
                         <tr>
                             <td style="font-size: 18px; font-weight: 900;">입찰 금액 입력</td>
-                            <td style="text-align: right;"><input style="height: 45px; width: 150px;" type="number" id="bidPriceInput"></td>
+                            <td style="text-align: right;"><input style="height: 45px; width: 150px;" type="number" id="bidPriceInput" step="${ selectPost.bidUnit }" min="<%= max %>" max="9223372036854775807" value="<%= max %>"></td>
                         </tr>
                         <tr>
                             <td colspan="2" style="vertical-align: bottom; text-align: right;">
@@ -344,7 +344,7 @@
 							          <button class="openModalBtn" onclick="loginPage();">입찰 확정 하기</button>
 							    </c:when>
 							    <c:otherwise>
-							    	<button id="openModalBtn" class="openModalBtn" onclick="return bidCheck();">입찰 확정 하기</button>
+							    	<button id="openModalBtn" class="openModalBtn">입찰 확정 하기</button>
 							    </c:otherwise>
 							</c:choose>
                           
@@ -456,9 +456,20 @@
 
         // 모달 열기
         openModalBtn.addEventListener('click', () => {
-            modalOverlay.style.display = 'block';
-            
-            modalBidPriceInput.value = bidPriceInput.value;
+        	const bidPriceValue = bidPriceInput.value;
+        	 if (bidPriceValue % ${selectPost.bidUnit} === 0 && bidPriceValue > <%= max %>) {
+                 
+        		 modalOverlay.style.display = 'block';
+                 
+                 modalBidPriceInput.value = bidPriceInput.value;
+                 
+                 
+             } else if (bidPriceValue % ${selectPost.bidUnit} !== 0) {
+                 alert("입찰 단위는 " + ${selectPost.bidUnit} + "원입니다.");  
+             } else {
+                 alert("현재가 이상으로 입찰 가능합니다.");
+             }
+        	
         });
 
         // 모달 닫기
@@ -497,23 +508,7 @@
         	location.href = "<%= contextPath %>/loginPage.me";
         }
         
-        function bidCheck() {
-            const bidPriceInput = document.getElementById('bidPriceInput');
-            const bidPriceValue = bidPriceInput.value;
-
-            if (bidPriceValue % ${selectPost.bidUnit} === 0 && bidPriceValue > <%= max %>) {
-                // 조건을 만족할 때만 모달 열기
-                modalOverlay.style.display = 'block';
-                modalBidPriceInput.value = bidPriceValue; // 모달의 입력값 설정
-                return true; // true 반환하여 모달이 열리게 함
-            } else if (bidPriceValue % ${selectPost.bidUnit} !== 0) {
-                alert("입찰 단위는 " + ${selectPost.bidUnit} + "원입니다.");
-                return false; // false 반환하여 모달이 열리지 않게 함
-            } else {
-                alert("현재가 이상으로 입찰 가능합니다.");
-                return false; // false 반환하여 모달이 열리지 않게 함
-            }
-        }
+      
 
 
 

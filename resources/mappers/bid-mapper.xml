@@ -42,6 +42,6 @@
 	<select id="selectMyBidList" resultMap="myBidResultSet">
 		SELECT BID_PRICE, BID_TIME, PRODUCT_NAME
 		FROM POSTING JOIN BID B USING (POSTING_NO)
-		WHERE b.mem_no = 2
+		WHERE b.MEM_NO = #{memNo}
 	</select>
 </mapper>
