@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" href="resources/images/favicon.png">
+
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script
@@ -169,7 +171,7 @@ input[id="remember"]:checked+label::after {
 		<table style="width: 626px;">
 			<tr>
 				<th style="width: 150px;"></th>
-				<th style="width: 326px;"><img src="../resource/Group38.png"
+				<th style="width: 326px;"><img src="resources/images/wuctionLogo.png"
 					alt=""></th>
 				<th style="width: 150px;"></th>
 			</tr>

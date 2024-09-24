@@ -8,6 +8,6 @@
 </head>
 <body>
 	<%= request.getAttribute("errorMsg") %>
-	<h1>에러 수고 ㅋㅋ</h1>
+	<h1>에러입니다.</h1>
 </body>
 </html>

@@ -5,7 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="">
 <title>Insert title here</title>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/x-icon';
+            link.href = 'resources/images/favicon.png';
+            document.head.appendChild(link);
+        });
+</script>
 <style>
       html,
       body {
