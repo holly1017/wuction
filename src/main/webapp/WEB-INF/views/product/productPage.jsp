@@ -1,3 +1,4 @@
+<%@page import="com.woong.wuction.member.model.vo.Member"%>
 <%@page import="com.woong.wuction.posting.model.vo.Bid"%>
 <%@page import="com.woong.wuction.posting.model.vo.Image"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${selectPost.productName}</title>
 <style>
 	html,
 	body {
@@ -273,14 +274,18 @@
 	
 	
 	long max = 0;
-    if (bidList != null && !bidList.isEmpty()) {
-        max = bidList.get(0).getBidPrice();
-        for (Bid bid : bidList) {
-            if (max < bid.getBidPrice()) {
-                max = bid.getBidPrice();
-            }
-        }
-    }
+	if (bidList == null || bidList.isEmpty()) { // null 체크를 먼저 수행
+	    max = selectPost.getStartPrice();
+	} else {
+	    max = bidList.get(0).getBidPrice();
+	    for (Bid bid : bidList) {
+	        if (max < bid.getBidPrice()) {
+	            max = bid.getBidPrice();
+	        }
+	    }
+	}
+    
+
 %>
   <div id="container">
     <div></div>
@@ -344,7 +349,10 @@
 							          <button class="openModalBtn" onclick="loginPage();">입찰 확정 하기</button>
 							    </c:when>
 							    <c:otherwise>
-							    	<button id="openModalBtn" class="openModalBtn">입찰 확정 하기</button>
+							    
+							    	<c:if test="${loginUser.memNo != selectPost.memNo}">
+							          <button id="openModalBtn" class="openModalBtn">입찰 확정 하기</button>
+							    	</c:if>
 							    </c:otherwise>
 							</c:choose>
                           
@@ -377,7 +385,9 @@
                               </tr>
                               <tr>
                                   <td>현재가</td>
-                                  <td><input class="product_modal_input" type="text" value="<%= max %>" readonly></td>
+                                  <td>
+                                  	<input class="product_modal_input" type="text" value="<%= max %>" readonly>
+                                  </td>
                               </tr>
                               <tr>
                                   <td>입찰 금액</td>

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" href="">
-<title>Insert title here</title>
+<title>Wuction</title>
 <script>
         document.addEventListener("DOMContentLoaded", function() {
             var link = document.createElement('link');

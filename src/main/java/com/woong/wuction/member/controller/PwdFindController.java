@@ -68,7 +68,7 @@ public class PwdFindController extends HttpServlet {
 	private boolean sendVerificationEmail(String email, String newPassword) {
 		String host = "smtp.gmail.com";
 		final String username= "wjddmsdb124@gmail.com";
-		final String password = "bneoraqntlwpyzpt";
+		final String password = "gbvtugrdbspkmidd";
 		
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");

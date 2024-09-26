@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Wuction</title>
 <link rel="icon" href="resources/images/favicon.png">
 
 <script
@@ -171,7 +171,7 @@ input[id="remember"]:checked+label::after {
 		<table style="width: 626px;">
 			<tr>
 				<th style="width: 150px;"></th>
-				<th style="width: 326px;"><img src="resources/images/wuctionLogo.png"
+				<th style="width: 326px;"><img src="resources/images/wuctionLogo.png" onclick="location.href='<%= contextPath %>/mainPage.co'"
 					alt=""></th>
 				<th style="width: 150px;"></th>
 			</tr>
@@ -265,7 +265,7 @@ input[id="remember"]:checked+label::after {
 						<div id="input-container">
 							<input type="text" name="authNum" id="authCode"
 								class="same-input" placeholder="인증 번호"> <input
-								type="text" id="input2" class="same-input" placeholder="남은시간"
+								type="text" id="input2" class="same-input" placeholder=""
 								disabled>
 						</div>
 						<button type="button" class="blackBtn" onclick="emailAuthCodeCheck();">인증</button>
