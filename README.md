@@ -19,7 +19,7 @@ Wuction은 **Spring Framework를 사용하지 않고**, Java **Servlet/JSP 기�
 ### 👤 회원 기능
 
 * 회원가입 / 로그인 / 로그아웃
-* 세션 기반 사용자 인증
+* 쿠키키 기반 사용자 인증
 * 마이페이지 정보 조회
 
 ### 🛍 경매(상품) 기능
@@ -130,6 +130,7 @@ http://localhost:8080/wuction
 ## 🔧 개선 예정 사항
 
 * Spring Boot 기반으로 리팩토링
+* JWT 기반 사용자 인증
 * REST API 구조로 개선
 * 실시간 입찰 WebSocket 적용
 * 테스트 코드 추가
