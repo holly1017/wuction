@@ -53,7 +53,92 @@ Controller (Servlet)
          └─ Oracle DB
 ```
 
-* **Controller**: 요청/응답 처리, 파라미터 검증웅
+* **Controller**: 요청/응답 처리, 파라미터 검증
+* **Service**: 비즈니스 로직 처리, 트랜잭션 관리
+* **DAO**: MyBatis를 이용한 DB 접근
+* **View**: JSP + HTML/CSS/JavaScript
+
+---
+
+## 🛠 기술 스택
+
+| 구분           | 사용 기술                 |
+| ------------ | --------------------- |
+| Language     | Java 8                |
+| Backend      | Servlet, JSP          |
+| Architecture | MVC Pattern           |
+| DB           | Oracle                |
+| Persistence  | MyBatis               |
+| Server       | Apache Tomcat         |
+| Frontend     | HTML, CSS, JavaScript |
+| Tool         | Eclipse / VS Code     |
+
+---
+
+## 🗄 데이터베이스 설계 (요약)
+
+* MEMBER (회원)
+* POSTING (경매 상품)
+* MYPAGE (마이페이지)
+
+👉 **정규화된 구조 + 외래키 관계 설정**
+
+---
+
+## 💡 Spring을 사용하지 않은 이유
+
+본 프로젝트는 Spring Framework를 사용하지 않고,
+Servlet/JSP 환경에서 MVC 구조를 직접 구현함으로써 다음을 학습하는 데 중점을 두었습니다.
+
+* HTTP 요청/응답 흐름 이해
+* Dispatcher 개념 체득
+* 세션 및 트랜잭션 직접 관리
+* SQL과 비즈니스 로직 분리 경험
+
+👉 이후 Spring Boot 학습을 위한 **기초 프로젝트**입니다.
+
+---
+
+## 📷 실행 화면
+
+> ※ 추후 스크린샷 추가 예정
+
+---
+
+## 🚀 실행 방법
+
+1. Oracle DB 실행 및 테이블 생성
+2. `src/main/resources` 내 DB 설정 수정
+3. Apache Tomcat 서버 설정
+4. 프로젝트 실행 후 접속
+
+```text
+http://localhost:8080/wuction
+```
+
+---
+
+## ✨ 배운 점
+
+* 프레임워크 없이 웹 애플리케이션 구조를 설계하는 경험
+* Controller/Service/DAO 역할 분리의 중요성
+* MyBatis를 활용한 SQL 관리
+* 파일 업로드 및 세션 관리 구현
+
+---
+
+## 🔧 개선 예정 사항
+
+* Spring Boot 기반으로 리팩토링
+* REST API 구조로 개선
+* 실시간 입찰 WebSocket 적용
+* 테스트 코드 추가
+
+---
+
+## 👩‍💻 개발자
+
+* GitHub: [https://github.com/holly1017](https://github.com/holly1017)
 
 ---
 
