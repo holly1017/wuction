@@ -19,7 +19,7 @@ Wuction은 **Spring Framework를 사용하지 않고**, Java **Servlet/JSP 기�
 ### 👤 회원 기능
 
 * 회원가입 / 로그인 / 로그아웃
-* 쿠키키 기반 사용자 인증
+* 쿠키 기반 사용자 인증
 * 마이페이지 정보 조회
 
 ### 🛍 경매(상품) 기능
@@ -139,7 +139,9 @@ http://localhost:8080/wuction
 
 ## 👩‍💻 개발자
 
-* GitHub: [https://github.com/holly1017](https://github.com/holly1017)
+* 최서은: [https://github.com/holly1017](https://github.com/holly1017)
+* 정은유
+* 조건웅
 
 ---
 
