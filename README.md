@@ -33,7 +33,6 @@ Wuction은 **Spring Framework를 사용하지 않고**, Java **Servlet/JSP 기�
 
 * 입찰 등록
 * 입찰 단위 적용
-* 최고 입찰가 갱신
 * 입찰 내역 조회
 
 ### 📦 기타 기능
