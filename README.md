@@ -86,15 +86,11 @@ Controller (Servlet)
 
 ## 💡 Spring을 사용하지 않은 이유
 
-본 프로젝트는 Spring Framework를 사용하지 않고,
-Servlet/JSP 환경에서 MVC 구조를 직접 구현함으로써 다음을 학습하는 데 중점을 두었습니다.
+프레임워크 사용 이전에
+웹 애플리케이션의 기본 동작 원리와 구조를 이해하는 것을 중요하게 생각하며,
+Servlet/JSP 기반으로 MVC 구조를 직접 구현하는 프로젝트를 선택하였습니다.
 
-* HTTP 요청/응답 흐름 이해
-* Dispatcher 개념 체득
-* 세션 및 트랜잭션 직접 관리
-* SQL과 비즈니스 로직 분리 경험
-
-👉 이후 Spring Boot 학습을 위한 **기초 프로젝트**입니다.
+👉 이후 Spring 학습을 위한 **기초 프로젝트**입니다.
 
 ---
 
@@ -122,7 +118,7 @@ http://localhost:8080/wuction
 * 프레임워크 없이 웹 애플리케이션 구조를 설계하는 경험
 * Controller/Service/DAO 역할 분리의 중요성
 * MyBatis를 활용한 SQL 관리
-* 파일 업로드 및 세션 관리 구현
+* 파일 업로드
 
 ---
 
