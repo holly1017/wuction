@@ -2,11 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="bidMapper">
 
-	<!-- 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
 	<resultMap type="Bid" id="BidResultSet">
-		<!-- property = "객체 클래스 파일의 필드변수명" column = "DB의 해당 컬럼 명" -->
 		<result property="bidNo" column="bid_no"/>
 		<result property="postingNo" column="posting_no"/>
 		<result property="memNo" column="mem_no"/>
@@ -14,34 +13,55 @@
 		<result property="bidTime" column="bid_time"/>
 	</resultMap>
 
+	<!-- 입찰 내역 조회 -->
 	<select id="selectBidList" resultMap="BidResultSet">
-		SELECT MEM_ID "MEM_NO", BID_PRICE, BID_TIME
-		FROM BID
-		    JOIN MEMBER m USING (MEM_NO)
-		    JOIN POSTING p USING (POSTING_NO)
-		WHERE POSTING_NO = #{postingNo} AND p.STATUS='BID' AND m.STATUS = 'Y'
-		ORDER BY BID_TIME DESC
+		SELECT 
+			b.BID_NO,
+			b.POSTING_NO,
+			b.MEM_NO,
+			b.BID_PRICE,
+			b.BID_TIME
+		FROM BID b
+		JOIN MEMBER m ON b.MEM_NO = m.MEM_NO
+		JOIN POSTING p ON b.POSTING_NO = p.POSTING_NO
+		WHERE b.POSTING_NO = #{postingNo}
+		  AND p.STATUS = 'BID'
+		  AND m.STATUS = 'Y'
+		ORDER BY b.BID_TIME DESC
 	</select>
-	
+
+	<!-- 입찰 등록 -->
 	<insert id="insertBid">
-		INSERT INTO BID
-			VALUES(BNO_SEQ.NEXTVAL, #{postingNo}, #{memNo}, #{bidPrice}, SYSDATE)
+		INSERT INTO BID (
+			POSTING_NO,
+			MEM_NO,
+			BID_PRICE,
+			BID_TIME
+		)
+		VALUES (
+			#{postingNo},
+			#{memNo},
+			#{bidPrice},
+			NOW()
+		)
 	</insert>
-	
-	
-	
-	
-	
-	
+
+	<!-- 마이페이지 입찰 목록 -->
 	<resultMap type="MyBid" id="myBidResultSet">
-		<result property="bidPrice" column="BID_PRICE"/>
-		<result property="bidTime" column="BID_TIME"/>
-		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="bidPrice" column="bid_price"/>
+		<result property="bidTime" column="bid_time"/>
+		<result property="productName" column="product_name"/>
 	</resultMap>
-	
+
 	<select id="selectMyBidList" resultMap="myBidResultSet">
-		SELECT BID_PRICE, BID_TIME, PRODUCT_NAME
-		FROM POSTING JOIN BID B USING (POSTING_NO)
-		WHERE b.mem_no = 2
+		SELECT 
+			b.BID_PRICE,
+			b.BID_TIME,
+			p.PRODUCT_NAME
+		FROM BID b
+		JOIN POSTING p ON b.POSTING_NO = p.POSTING_NO
+		WHERE b.MEM_NO = #{memNo}
+		ORDER BY b.BID_TIME DESC
 	</select>
+
 </mapper>

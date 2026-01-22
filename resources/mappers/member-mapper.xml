@@ -2,89 +2,102 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="memberMapper">
 
-	<!-- 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
 	<resultMap type="Member" id="memberResultSet">
-		<!-- property = "객체 클래스 파일의 필드변수명" column = "DB의 해당 컬럼 명" -->
-		<result property="memNo" column="mem_no" />
-		<result property="memId" column="mem_id" />
-		<result property="memPwd" column="mem_pwd" />
-		<result property="name" column="name" />
-		<result property="birthDate" column="birth_date" />
-		<result property="postCode" column="POST_CODE" />
-		<result property="fullAddress" column="full_address" />
-		<result property="email" column="email" />
-		<result property="joinDate" column="join_date" />
-		<result property="status" column="status" />
+		<result property="memNo" column="mem_no"/>
+		<result property="memId" column="mem_id"/>
+		<result property="memPwd" column="mem_pwd"/>
+		<result property="name" column="name"/>
+		<result property="birthDate" column="birth_date"/>
+		<result property="postCode" column="post_code"/>
+		<result property="fullAddress" column="full_address"/>
+		<result property="email" column="email"/>
+		<result property="joinDate" column="join_date"/>
+		<result property="status" column="status"/>
 	</resultMap>
 
+	<!-- 로그인 -->
 	<select id="selectMember" resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER
-		WHERE MEM_ID = #{memId} AND MEM_PWD = #{memPwd} AND STATUS =
-		'Y'
+		WHERE MEM_ID = #{memId}
+		  AND MEM_PWD = #{memPwd}
+		  AND STATUS = 'Y'
 	</select>
 
-
+	<!-- 회원가입 -->
 	<insert id="insertMember">
-		INSERT INTO MEMBER (MEM_NO
-		, MEM_ID
-		, MEM_PWD
-		, NAME
-		, BIRTH_DATE
-		, POST_CODE
-		, FULL_ADDRESS
-		, EMAIL)
-		VALUES (MNO_SEQ.NEXTVAL
-		, #{memId}
-		, #{memPwd}
-		, #{name}
-		, #{birthDate}
-		, #{postCode}
-		, #{fullAddress}
-		, #{email})
+		INSERT INTO MEMBER (
+			MEM_ID,
+			MEM_PWD,
+			NAME,
+			BIRTH_DATE,
+			POST_CODE,
+			FULL_ADDRESS,
+			EMAIL,
+			JOIN_DATE,
+			STATUS
+		)
+		VALUES (
+			#{memId},
+			#{memPwd},
+			#{name},
+			#{birthDate},
+			#{postCode},
+			#{fullAddress},
+			#{email},
+			NOW(),
+			'Y'
+		)
 	</insert>
-	
+
 	<select id="selectId" resultMap="memberResultSet">
-	   SELECT * FROM MEMBER WHERE MEM_ID = #{memId} AND STATUS = 'Y'
+		SELECT *
+		FROM MEMBER
+		WHERE MEM_ID = #{memId}
+		  AND STATUS = 'Y'
 	</select>
-	
+
 	<update id="updateMember">
 		UPDATE MEMBER
-		   SET NAME = #{name},
-		   		BIRTH_DATE = #{birthDate},
-		   		POST_CODE = #{postCode},
-		   		FULL_ADDRESS = #{fullAddress},
-		   		EMAIL = #{email}
+		SET NAME = #{name},
+			BIRTH_DATE = #{birthDate},
+			POST_CODE = #{postCode},
+			FULL_ADDRESS = #{fullAddress},
+			EMAIL = #{email}
 		WHERE MEM_ID = #{memId}
+		  AND STATUS = 'Y'
 	</update>
-  
-  <update id="updatePassword">
+
+	<update id="updatePassword">
 		UPDATE MEMBER
-		   SET MEM_PWD = #{memPwd}
-		WHERE MEM_ID = #{memId} AND STATUS = 'Y'
+		SET MEM_PWD = #{memPwd}
+		WHERE MEM_ID = #{memId}
+		  AND STATUS = 'Y'
 	</update>
-  
-  <select id="selectEmail" resultMap="memberResultSet">
-		SELECT * FROM MEMBER WHERE EMAIL = #{email} AND STATUS = 'Y'
+
+	<select id="selectEmail" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE EMAIL = #{email}
+		  AND STATUS = 'Y'
 	</select>
-	
+
 	<update id="deleteMember">
 		UPDATE MEMBER
-		   SET STATUS = 'N'
-		WHERE MEM_ID = #{memId} AND MEM_PWD = #{memPwd} AND STATUS = 'Y'
+		SET STATUS = 'N'
+		WHERE MEM_ID = #{memId}
+		  AND MEM_PWD = #{memPwd}
+		  AND STATUS = 'Y'
 	</update>
-	
-	
+
 	<update id="pwdFindMember">
 		UPDATE MEMBER
-			SET MEM_PWD = #{memPwd}
-		WHERE EMAIL = #{email} AND STATUS = 'Y'
+		SET MEM_PWD = #{memPwd}
+		WHERE EMAIL = #{email}
+		  AND STATUS = 'Y'
 	</update>
-	
-	
-	
-	
-		
+
 </mapper>

@@ -26,11 +26,18 @@
 	      	<transactionManager type="JDBC"/>
 	    
 	      	<dataSource type="POOLED">
-	        	<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-	        	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-	        	<property name="username" value="C##wuction"/>
-	        	<property name="password" value="wuction"/>
-	      	</dataSource>
+			    <!-- MariaDB JDBC 드라이버 -->
+			    <property name="driver" value="org.mariadb.jdbc.Driver"/>
+			
+			    <!-- RDS 엔드포인트 + 포트 + DB명 -->
+			    <property 
+			        name="url" 
+			        value="jdbc:mariadb://wuction-db.c6le0ia4gtix.us-east-1.rds.amazonaws.com:3306/wuction"/>
+			
+			    <!-- RDS 생성 시 설정한 계정 -->
+			    <property name="username" value="wuction"/>
+			    <property name="password" value="wuction1"/>
+			</dataSource>
     	</environment>
 	</environments>
       

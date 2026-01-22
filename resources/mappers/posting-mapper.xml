@@ -2,105 +2,124 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="postingMapper">
 
-	<!-- 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
 	<resultMap type="Posting" id="PostingResultSet">
-		<!-- property = "객체 클래스 파일의 필드변수명" column = "DB의 해당 컬럼 명" -->
-		<result property="postingNo" column="POSTING_NO"></result>
-		<result property="memNo" column="MEM_NO"></result>
-		<result property="categoryNo" column="CATEGORY_NO"></result>
-		<result property="productInfo" column="PRODUCT_INFO"></result>
-		<result property="productName" column="PRODUCT_NAME"></result>
-		<result property="endTime" column="END_TIME"></result>
-		<result property="startTime" column="START_TIME"></result>
-		<result property="startPrice" column="START_PRICE"></result>
-		<result property="bidUnit" column="BID_UNIT"></result>
-		<result property="status" column="STATUS"></result>
+		<result property="postingNo" column="POSTING_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="categoryNo" column="CATEGORY_NO"/>
+		<result property="productInfo" column="PRODUCT_INFO"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="endTime" column="END_TIME"/>
+		<result property="startTime" column="START_TIME"/>
+		<result property="startPrice" column="START_PRICE"/>
+		<result property="bidUnit" column="BID_UNIT"/>
+		<result property="status" column="STATUS"/>
 	</resultMap>
 
-	<resultMap type="MainPagePosting"
-		id="MainPagePostingResultSet">
-		<result property="postingNo" column="POSTING_NO" />
-		<result property="productName" column="PRODUCT_NAME" />
-		<result property="maxPrice" column="MAX_PRICE" />
-		<result property="bidCount" column="BID_COUNT" />
-		<result property="endTime" column="END_TIME" />
-		<result property="imgFile" column="IMG_FILE" />
+	<resultMap type="MainPagePosting" id="MainPagePostingResultSet">
+		<result property="postingNo" column="POSTING_NO"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="maxPrice" column="MAX_PRICE"/>
+		<result property="bidCount" column="BID_COUNT"/>
+		<result property="endTime" column="END_TIME"/>
+		<result property="imgFile" column="IMG_FILE"/>
 	</resultMap>
 
-
-	<insert id="insertPosting" useGeneratedKeys="true"
-		keyProperty="postingNo" keyColumn="POSTING_NO">
-		INSERT INTO POSTING
-		(POSTING_NO,
-		MEM_NO, CATEGORY_NO, PRODUCT_INFO, PRODUCT_NAME, END_TIME,
-		START_TIME,
-		START_PRICE, BID_UNIT, STATUS)
-		VALUES
-		(PNO_SEQ.NEXTVAL, #{memNo},
-		#{categoryNo}, #{productInfo}, #{productName},
-		TO_DATE(#{endTime},
-		'YYYY-MM-DD"T"HH24:MI'), SYSDATE, #{startPrice},
-		#{bidUnit}, 'BID')
-
+	<insert id="insertPosting" useGeneratedKeys="true" keyProperty="postingNo" keyColumn="POSTING_NO">
+		INSERT INTO POSTING (
+			MEM_NO, CATEGORY_NO, PRODUCT_INFO, PRODUCT_NAME,
+			END_TIME, START_TIME, START_PRICE, BID_UNIT, STATUS
+		)
+		VALUES (
+			#{memNo}, #{categoryNo}, #{productInfo}, #{productName},
+			STR_TO_DATE(#{endTime}, '%Y-%m-%dT%H:%i'), NOW(), #{startPrice}, #{bidUnit}, 'BID'
+		)
 	</insert>
 
 	<select id="selectPosting" resultMap="PostingResultSet">
-		SELECT POSTING_NO, MEM_NO, CATEGORY_NO, PRODUCT_INFO, PRODUCT_NAME, END_TIME, START_TIME, START_PRICE, BID_UNIT, STATUS
-			FROM POSTING
+		SELECT
+			POSTING_NO, MEM_NO, CATEGORY_NO, PRODUCT_INFO,
+			PRODUCT_NAME, END_TIME, START_TIME,
+			START_PRICE, BID_UNIT, STATUS
+		FROM POSTING
 		WHERE POSTING_NO = #{postingNo} AND STATUS = 'BID'
 	</select>
 
-	<select id="selectPostingList"
-		resultMap="MainPagePostingResultSet">
-
-		SELECT POSTING_NO, PRODUCT_NAME, NVL(MAX(BID_PRICE), START_PRICE) AS MAX_PRICE, COUNT(BID_NO) AS BID_COUNT, END_TIME, IMG_FILE
-		FROM POSTING
-        LEFT JOIN BID USING (POSTING_NO)
-		JOIN IMAGE USING (POSTING_NO)
-		WHERE IMG_NO = 1
-		GROUP BY POSTING_NO, PRODUCT_NAME, END_TIME, IMG_FILE, IMG_NO, START_TIME, START_PRICE
-		ORDER BY START_TIME DESC
+	<select id="selectPostingList" resultMap="MainPagePostingResultSet">
+		SELECT
+			p.POSTING_NO,
+			p.PRODUCT_NAME,
+			COALESCE(MAX(b.BID_PRICE), p.START_PRICE) AS MAX_PRICE,
+			COUNT(b.BID_NO) AS BID_COUNT,
+			p.END_TIME,
+			i.IMG_FILE
+		FROM POSTING p
+		LEFT JOIN BID b ON p.POSTING_NO = b.POSTING_NO
+		JOIN IMAGE i ON p.POSTING_NO = i.POSTING_NO 
+		            AND i.IMG_NO = (SELECT MIN(IMG_NO) FROM IMAGE WHERE POSTING_NO = p.POSTING_NO)
+		GROUP BY
+			p.POSTING_NO, p.PRODUCT_NAME, p.END_TIME,
+			i.IMG_FILE, p.START_TIME, p.START_PRICE
+		ORDER BY p.START_TIME DESC
 	</select>
-	
+
 	<select id="selectTopPostingList" resultMap="MainPagePostingResultSet">
-		SELECT *
-		FROM (
-		    SELECT POSTING_NO, PRODUCT_NAME, MAX_PRICE, BID_COUNT, END_TIME, IMG_FILE
-		    FROM (
-		        SELECT POSTING_NO, PRODUCT_NAME, NVL(MAX(BID_PRICE), START_PRICE) AS MAX_PRICE, COUNT(BID_NO) AS BID_COUNT, END_TIME, IMG_FILE
-				FROM POSTING
-		        LEFT JOIN BID USING (POSTING_NO)
-				JOIN IMAGE USING (POSTING_NO)
-				WHERE IMG_NO = 1
-				GROUP BY POSTING_NO, PRODUCT_NAME, END_TIME, IMG_FILE, IMG_NO, START_TIME, START_PRICE
-				ORDER BY BID_COUNT DESC
-		    )
-		    WHERE ROWNUM BETWEEN 1 AND 4
-		)
+		SELECT
+			p.POSTING_NO,
+			p.PRODUCT_NAME,
+			COALESCE(MAX(b.BID_PRICE), p.START_PRICE) AS MAX_PRICE,
+			COUNT(b.BID_NO) AS BID_COUNT,
+			p.END_TIME,
+			i.IMG_FILE
+		FROM POSTING p
+		LEFT JOIN BID b ON p.POSTING_NO = b.POSTING_NO
+		JOIN IMAGE i ON p.POSTING_NO = i.POSTING_NO 
+		            AND i.IMG_NO = (SELECT MIN(IMG_NO) FROM IMAGE WHERE POSTING_NO = p.POSTING_NO)
+		GROUP BY
+			p.POSTING_NO, p.PRODUCT_NAME, p.END_TIME,
+			i.IMG_FILE, p.START_TIME, p.START_PRICE
+		ORDER BY BID_COUNT DESC
+		LIMIT 4
 	</select>
-
 
 	<select id="selectSearchList" resultMap="MainPagePostingResultSet">
-		SELECT POSTING_NO, PRODUCT_NAME, NVL(MAX(BID_PRICE), START_PRICE) AS MAX_PRICE, COUNT(BID_NO) AS BID_COUNT, END_TIME, IMG_FILE
-		FROM POSTING
-		LEFT JOIN BID USING (POSTING_NO)
-		JOIN IMAGE USING (POSTING_NO)
-		WHERE IMG_NO = 1 AND PRODUCT_NAME LIKE '%'||#{keyword}||'%'
-		GROUP BY POSTING_NO, PRODUCT_NAME, END_TIME, IMG_FILE, IMG_NO, START_TIME, START_PRICE
-		ORDER BY START_TIME DESC
+		SELECT
+			p.POSTING_NO,
+			p.PRODUCT_NAME,
+			COALESCE(MAX(b.BID_PRICE), p.START_PRICE) AS MAX_PRICE,
+			COUNT(b.BID_NO) AS BID_COUNT,
+			p.END_TIME,
+			i.IMG_FILE
+		FROM POSTING p
+		LEFT JOIN BID b ON p.POSTING_NO = b.POSTING_NO
+		JOIN IMAGE i ON p.POSTING_NO = i.POSTING_NO 
+		            AND i.IMG_NO = (SELECT MIN(IMG_NO) FROM IMAGE WHERE POSTING_NO = p.POSTING_NO)
+		WHERE p.PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%')
+		GROUP BY
+			p.POSTING_NO, p.PRODUCT_NAME, p.END_TIME,
+			i.IMG_FILE, p.START_TIME, p.START_PRICE
+		ORDER BY p.START_TIME DESC
 	</select>
 
 	<select id="selectMyPostingList" resultMap="MainPagePostingResultSet">
-		SELECT POSTING_NO, PRODUCT_NAME, NVL(MAX(BID_PRICE), START_PRICE) AS MAX_PRICE, COUNT(BID_NO) AS BID_COUNT, END_TIME, IMG_FILE
+		SELECT
+			p.POSTING_NO,
+			p.PRODUCT_NAME,
+			COALESCE(MAX(b.BID_PRICE), p.START_PRICE) AS MAX_PRICE,
+			COUNT(b.BID_NO) AS BID_COUNT,
+			p.END_TIME,
+			i.IMG_FILE
 		FROM POSTING p
-		LEFT JOIN BID USING (POSTING_NO)
-		JOIN IMAGE USING (POSTING_NO)
-		WHERE IMG_NO = 1 AND p.MEM_NO = #{memNo}
-		GROUP BY POSTING_NO, PRODUCT_NAME, END_TIME, IMG_FILE, IMG_NO, START_TIME, START_PRICE
-        HAVING COUNT(BID_NO) > 0 OR MAX(BID_PRICE) IS NULL
-		ORDER BY START_TIME DESC
+		LEFT JOIN BID b ON p.POSTING_NO = b.POSTING_NO
+		JOIN IMAGE i ON p.POSTING_NO = i.POSTING_NO 
+		            AND i.IMG_NO = (SELECT MIN(IMG_NO) FROM IMAGE WHERE POSTING_NO = p.POSTING_NO)
+		WHERE p.MEM_NO = #{memNo}
+		GROUP BY
+			p.POSTING_NO, p.PRODUCT_NAME, p.END_TIME,
+			i.IMG_FILE, p.START_TIME, p.START_PRICE
+		ORDER BY p.START_TIME DESC
 	</select>
-	
+
 </mapper>

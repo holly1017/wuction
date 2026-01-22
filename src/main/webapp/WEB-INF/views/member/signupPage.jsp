@@ -253,8 +253,9 @@ input[id="remember"]:checked+label::after {
 			</tr>
 			<tr>
 				<td></td>
-				<td><button class="authBtn" onclick="emailCheck(event);">인증
-						번호 전송</button><button class="authBtn">재전송</button></td>
+				<td>
+				<button class="authBtn" onclick="emailCheck(event);">인증번호 전송</button>
+				<button class="authBtn">재전송</button></td>
 			</tr>
 			<tr>
 				<td></td>
