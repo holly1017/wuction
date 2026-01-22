@@ -51,7 +51,7 @@ Java 웹 기본 원리 학습을 목표로 한 포트폴리오 프로젝트입�
 Controller (Servlet)
  └─ Service
      └─ DAO (MyBatis)
-         └─ Oracle DB
+         └─ Oracle DB (현재 mariaDB)
 ```
 
 * **Controller**: 요청/응답 처리, 파라미터 검증
@@ -68,7 +68,7 @@ Controller (Servlet)
 | Language     | Java 8                |
 | Backend      | Servlet, JSP          |
 | Architecture | MVC Pattern           |
-| DB           | Oracle                |
+| DB           | Oracle -> mariadb     |
 | Persistence  | MyBatis               |
 | Server       | Apache Tomcat         |
 | Frontend     | HTML, CSS, JavaScript |
@@ -106,7 +106,7 @@ Servlet/JSP 기반으로 MVC 구조를 직접 구현하는 프로젝트를 선�
 
 ## 🚀 실행 방법
 
-1. Oracle DB 실행 및 테이블 생성
+1. Oracle DB(-> mariadb) 실행 및 테이블 생성
 2. `src/main/resources` 내 DB 설정 수정
 3. Apache Tomcat 서버 설정
 4. 프로젝트 실행 후 접속
