@@ -41,6 +41,7 @@ public class ProductPageController extends HttpServlet {
 		// 게시물 정보 조회
 		Posting selectPost = new PostingServiceImpl().selectPosting(p);
 		System.out.println("게시물 정보 조회 : " + selectPost);
+		
 		// 게시물 이미지 조회
 		ArrayList<Image> imgList = new PostingServiceImpl().selectImgList(p);
 		System.out.println("게시물 이미지 조회 : " + imgList);

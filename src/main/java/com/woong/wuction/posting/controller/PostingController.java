@@ -86,11 +86,11 @@ public class PostingController extends HttpServlet {
 	        // 성공 응답
 	        session.setAttribute("alertMsg", "업로드 성공");
 	        response.sendRedirect(request.getContextPath());
-	    } else {
-	        // 실패 응답
-	        request.setAttribute("errorMsg", "업로드 실패");
-	        request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
-	    }
+	} else {
+		// 실패 응답
+		request.setAttribute("errorMsg", "업로드 실패");
+		request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
+	}
 	}
 
 

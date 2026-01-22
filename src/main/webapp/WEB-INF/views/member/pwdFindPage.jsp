@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Wuction</title>
+<link rel="icon" href="resources/images/favicon.png">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -66,7 +68,7 @@
 <% String contextPath = request.getContextPath(); %>
     <table>
         <tr>
-            <th><img src="../resource/Group38.png" alt="" style="margin-bottom: 50px;"></th>
+            <th><img src="resources/images/wuctionLogo.png" onclick="location.href='<%= contextPath %>/mainPage.co'" alt="" style="margin-bottom: 50px;"></th>
         </tr>
         <tr>
             <td id="find-text">비밀번호 찾기</td>

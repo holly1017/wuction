@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Wuction</title>
+<link rel="icon" href="resources/images/favicon.png">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
@@ -126,7 +128,7 @@
 	%>
     <table>
         <tr>
-            <th><img src="../resource/Group38.png" alt="" style="margin-bottom: 50px;"></th>
+            <th><img src="resources/images/wuctionLogo.png" onclick="location.href='<%= contextPath %>/mainPage.co'"  alt="" style="margin-bottom: 50px;"></th>
         </tr>
         <tr>
             <td id="find-text">아이디 찾기</td>
@@ -142,7 +144,7 @@
                 <div style="display: flex; justify-content: space-between;">
                     <div id="input-container">
                         <input type="text" id="authCode" class="same-input" placeholder="인증 번호">
-                        <input type="text" id="input2" class="same-input" placeholder="남은시간">
+                        <input type="text" id="input2" class="same-input" placeholder="">
                     </div>
                     <button class="blackBtn" onclick="authCodeCheck();">인증</button>
                 </div>
@@ -156,7 +158,7 @@
             </td>
         </tr>
         <tr>
-            <td><button id="id-find-btn" type="submit"><a href="<%= contextPath %>/loginPage.me">로그인 하기</a></button></td>
+            <td><button id="id-find-btn" type="submit" onclick="location.href='<%= contextPath %>/loginPage.me'">로그인 하기</button></td>
         </tr>
     </table>
     

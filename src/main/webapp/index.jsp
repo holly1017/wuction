@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="resources/images/favicon.png">
 <title>wuction</title>
 </head>
 <body>

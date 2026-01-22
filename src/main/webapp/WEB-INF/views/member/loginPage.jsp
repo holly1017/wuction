@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="icon" href="resources/images/favicon.png">
+
+<title>Wuction</title>
 <style>
 	table {
 	    margin: auto;
@@ -97,7 +99,7 @@
 	%>
     <table>
         <tr>
-            <th><img src="resources/images/wuctionLogo.png" alt=""></th>
+            <th><img src="resources/images/wuctionLogo.png" onclick="location.href='<%= contextPath %>/mainPage.co'" alt=""></th>
         </tr>
             <form action="<%= contextPath %>/login.me" method="post">
         <tr>

@@ -54,14 +54,9 @@
 	</resultMap>
 
 	<select id="selectMyBidList" resultMap="myBidResultSet">
-		SELECT 
-			b.BID_PRICE,
-			b.BID_TIME,
-			p.PRODUCT_NAME
-		FROM BID b
-		JOIN POSTING p ON b.POSTING_NO = p.POSTING_NO
+		SELECT BID_PRICE, BID_TIME, PRODUCT_NAME
+		FROM POSTING JOIN BID B USING (POSTING_NO)
 		WHERE b.MEM_NO = #{memNo}
-		ORDER BY b.BID_TIME DESC
 	</select>
 
 </mapper>

@@ -1,22 +1,22 @@
 package com.woong.wuction.mypage.model.dto;
 
 public class MyBid {
-	private int bidPrice;
+	private long bidPrice;
 	private String bidTime;
 	private String productName;
 	public MyBid() {
 		super();
 	}
-	public MyBid(int bidPrice, String bidTime, String productName) {
+	public MyBid(long bidPrice, String bidTime, String productName) {
 		super();
 		this.bidPrice = bidPrice;
 		this.bidTime = bidTime;
 		this.productName = productName;
 	}
-	public int getBidPrice() {
+	public long getBidPrice() {
 		return bidPrice;
 	}
-	public void setBidPrice(int bidPrice) {
+	public void setBidPrice(long bidPrice) {
 		this.bidPrice = bidPrice;
 	}
 	public String getBidTime() {

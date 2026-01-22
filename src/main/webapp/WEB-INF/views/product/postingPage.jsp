@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
       html,
       body {
@@ -133,7 +132,7 @@
                 <td>상품 이미지</td>
                 <td>
                   <div class="upload-container">
-                    <input class="hidden-upload" type="file" name="img1" id="hidden-upload-1" />
+                    <input class="hidden-upload" type="file" name="img1" id="hidden-upload-1" required/>
                     <div class="upload" id="upload-1"><img src="resources/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
                     <input class="hidden-upload" type="file" name="img2" id="hidden-upload-2" />
                     <div class="upload" id="upload-2"><img src="resources/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
@@ -146,25 +145,25 @@
               <tr>
                 <td style="padding-top: 20px">제품명</td>
                 <td style="padding-top: 20px">
-                  <input type="text" name="productName" id="" style="font-size: 18px; height:40px; width: 100%; box-sizing: border-box;"/>
+                  <input type="text" name="productName" id="" style="font-size: 18px; height:40px; width: 100%; box-sizing: border-box;" required/>
                 </td>
               </tr>
               <tr>
                 <td style="padding-top: 40px">제품 설명</td>
                 <td style="padding-top: 40px">
-                  <textarea name="productInfo" id="" cols="30" rows="10" style="font-size: 18px; box-sizing: border-box; width: 100%; resize: none;"></textarea>
+                  <textarea name="productInfo" id="" cols="30" rows="10" style="font-size: 18px; box-sizing: border-box; width: 100%; resize: none;" required></textarea>
                 </td>
               </tr>
               <tr>
                 <td style="padding-top: 40px">시작가</td>
                 <td style="padding-top: 40px">
-                  <input type="number" min="1000" name="startPrice" id="" style="box-sizing: border-box; width: 100%; height: 40px; font-size: 18px;"/>
+                  <input type="number" min="1000" name="startPrice" id="" style="box-sizing: border-box; width: 100%; height: 40px; font-size: 18px;" required/>
                 </td>
               </tr>
               <tr>
                 <td style="padding-top: 40px">입찰 단위</td>
                 <td style="padding-top: 40px">
-                  <input type="number" step="1000" min="1000" name="bidUnit" id="" style="box-sizing: border-box; width: 100%; height: 40px; font-size: 18px;"/>
+                  <input type="number" step="1000" min="1000" name="bidUnit" id="" style="box-sizing: border-box; width: 100%; height: 40px; font-size: 18px;" required/>
                 </td>
               </tr>
               <tr>
@@ -180,7 +179,7 @@
               <tr>
                 <td style="padding-top: 40px">마감시간</td>
                 <td style="padding-top: 40px">
-                  <input type="datetime-local" name="endTime" id="date" style="width:280px; height:40px; font-size: 18px;" />
+                  <input type="datetime-local" name="endTime" id="date" style="width:280px; height:40px; font-size: 18px;" required/>
                 </td>
               </tr>
             </table>

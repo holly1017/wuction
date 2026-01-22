@@ -68,7 +68,7 @@ public class SendAuthCodeController extends HttpServlet {
 	private boolean sendVerificationEmail(String email, String verificationCode) {
 		String host = "smtp.gmail.com"; // SMTP 서버 호스트 : 구글의 경우 smtp.gmail.com
 		final String username = "holly101763@gmail.com";
-		final String password = "ifxgfxvhaskkozbk";
+		final String password = "";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true"); // SMTP 인증 사용 여부

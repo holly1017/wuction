@@ -121,8 +121,7 @@ public class PostingServiceImpl implements PostingService {
 		sqlSession.close();
 		
 		return pList;
-	}
-	
+	}	
 
 	
 }
