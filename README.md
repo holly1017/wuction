@@ -61,6 +61,9 @@ Controller (Servlet)
 
 ---
 
+## 🏗 프로젝트 아키텍처
+<img width="723" height="614" alt="wuction drawio" src="https://github.com/user-attachments/assets/1fce7dcb-dbcf-485a-a4a0-aef980387f8c" />
+
 ## 🛠 기술 스택
 
 | 구분           | 사용 기술                 |
