@@ -1,18 +1,19 @@
 # 🛒 Wuction (Web Auction Project)
 
 Wuction은 **Spring Framework를 사용하지 않고**, Java **Servlet/JSP 기반으로 MVC 구조를 직접 구현한 웹 경매(Auction) 서비스**입니다.
-프레임워크에 의존하지 않고 웹 애플리케이션의 **요청 흐름, 서버 구조, DB 연동 원리**를 깊이 이해하는 것을 목표로 개발했습니다.
-따라서 본 프로젝트는 상용 서비스가 아닌, 
-Java 웹 기본 원리 학습을 목표로 한 포트폴리오 프로젝트입니다.
+프레임워크에 의존하지 않고 웹 애플리케이션의 **요청 흐름, 서버 구조, DB 연동 원리**를 깊이 이해하는 것을 목표로 개발하였으며, AWS 환경에 직접 배포하여 실제 서비스 흐름까지 경험한 프로젝트입니다.
+본 프로젝트는 상용 목적이 아닌, 
+Java 웹 기본 원리 학습 및 기초 역량 강화 목표로 한 포트폴리오 프로젝트입니다.
 
 ---
 
 ## 📌 프로젝트 목적
 
-* Java 웹의 기본 동작 원리(Servlet, JSP)를 이해하기 위함
+* Servlet/JSP 기반 Java 웹 동작 원리 이해
 * MVC 패턴을 **직접 설계 및 구현**
 * DB 설계부터 SQL, 트랜잭션 처리까지 전 과정을 경험
 * Spring 사용 전, **백엔드 기초 체력 강화**
+* 로컬 개발 → AWS 배포까지의 전체 흐름 경험
 
 ---
 
@@ -51,7 +52,7 @@ Java 웹 기본 원리 학습을 목표로 한 포트폴리오 프로젝트입�
 Controller (Servlet)
  └─ Service
      └─ DAO (MyBatis)
-         └─ Oracle DB (현재 mariaDB)
+         └─ mariaDB (AWS RDS)
 ```
 
 * **Controller**: 요청/응답 처리, 파라미터 검증
@@ -66,16 +67,17 @@ Controller (Servlet)
 
 ## 🛠 기술 스택
 
-| 구분           | 사용 기술                 |
-| ------------ | --------------------- |
-| Language     | Java 8                |
-| Backend      | Servlet, JSP          |
-| Architecture | MVC Pattern           |
-| DB           | Oracle -> mariadb     |
-| Persistence  | MyBatis               |
-| Server       | Apache Tomcat         |
-| Frontend     | HTML, CSS, JavaScript |
-| Tool         | Eclipse / VS Code     |
+| 구분           | 사용 기술                  |
+| ------------ | ---------------------  |
+| Language     | Java 8                 |
+| Backend      | Servlet, JSP           |
+| Architecture | MVC Pattern            |
+| DB           | mariadb(AWS RDS)       |
+| Persistence  | MyBatis                |
+| Server       | Apache Tomcat(AWS EC2) |
+| Frontend     | HTML, CSS, JavaScript  |
+| Infra        | AWS EC2, AWS RDS       |
+| Tool         | Eclipse / VS Code      |
 
 ---
 
@@ -93,11 +95,12 @@ Controller (Servlet)
 
 ## 💡 Spring을 사용하지 않은 이유
 
-프레임워크 사용 이전에
-웹 애플리케이션의 기본 동작 원리와 구조를 이해하는 것을 중요하게 생각하며,
-Servlet/JSP 기반으로 MVC 구조를 직접 구현하는 프로젝트를 선택하였습니다.
+프레임워크에 의존하지 않고
+웹 애플리케이션의 기본 동작 원리와 구조를 이해하는 것이 중요하다고 판단했습니다.
 
-👉 이후 Spring 학습을 위한 **기초 프로젝트**입니다.
+Servlet/JSP 기반으로 MVC 구조를 직접 구현함으로써 요청 흐름, 계층 분리, DB 연동 방식을 명확히 이해하고자 했습니다.
+
+👉 이후 Spring / Spring Boot 학습을 위한 **기초 프로젝트**입니다.
 
 ---
 
@@ -109,23 +112,25 @@ Servlet/JSP 기반으로 MVC 구조를 직접 구현하는 프로젝트를 선�
 
 ## 🚀 실행 방법
 
-1. Oracle DB(-> mariadb) 실행 및 테이블 생성
-2. `src/main/resources` 내 DB 설정 수정
-3. Apache Tomcat 서버 설정
-4. 프로젝트 실행 후 접속
+1. 프로젝트 빌드 후 wuction.war 생성
+2. AWS EC2에 Apache Tomcat 설치
+3. WAR 파일 수동 배포
+4. AWS RDS (MariaDB) 연동
 
 ```text
-http://localhost:8080/wuction
+http://<EC2_PUBLIC_IP>:8080/wuction
 ```
 
 ---
 
 ## ✨ 배운 점
 
-* 프레임워크 없이 웹 애플리케이션 구조를 설계하는 경험
-* Controller/Service/DAO 역할 분리의 중요성
-* MyBatis를 활용한 SQL 관리
-* 파일 업로드
+* 프레임워크 없이 웹 애플리케이션 구조를 설계한 경험
+* 요청/응답 흐름에 대한 명확한 이해
+* Controller / Service / DAO 계층 분리의 중요성
+* MyBatis 기반 SQL 관리
+* AWS 환경에서의 서버·DB 분리 및 보안 설정
+* WAR 파일 기반 수동 배포 경험
 
 ---
 
@@ -135,7 +140,7 @@ http://localhost:8080/wuction
 * JWT 기반 사용자 인증
 * REST API 구조로 개선
 * 실시간 입찰 WebSocket 적용
-* 테스트 코드 추가
+* 테스트 코드 추가 및 예외 처리 강화
 
 ---
 
