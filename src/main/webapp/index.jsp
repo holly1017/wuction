@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" href="resources/images/favicon.png">
-<title>wuction</title>
+<title>Wuction</title>
 </head>
 <body>
 	<%@ include file="WEB-INF/views/common/mainPage.jsp" %>
