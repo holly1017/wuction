@@ -104,12 +104,6 @@ Servlet/JSP 기반으로 MVC 구조를 직접 구현함으로써 요청 흐름, 
 
 ---
 
-## 📷 실행 화면
-
-> ※ 추후 스크린샷 추가 예정
-
----
-
 ## 🚀 실행 방법
 
 1. 프로젝트 빌드 후 wuction.war 생성
@@ -136,6 +130,7 @@ http://<EC2_PUBLIC_IP>:8080/wuction
 
 ## 🔧 개선 예정 사항
 
+* 낙찰, 결제, 배송에 이르는 사용자 이용 전 과정(End-to-End)의 서비스 로직 구축 -> 본 프로젝트는 입찰까지만 구현됨
 * Spring Boot 기반으로 리팩토링
 * JWT 기반 사용자 인증
 * REST API 구조로 개선
@@ -143,6 +138,12 @@ http://<EC2_PUBLIC_IP>:8080/wuction
 * 테스트 코드 추가 및 예외 처리 강화
 
 ---
+
+## 📷 실행 화면
+<img width="3835" height="2089" alt="wuction_1" src="https://github.com/user-attachments/assets/f79e7679-ffc8-4304-a167-0cacd5623057" />
+<img width="3872" height="2056" alt="wuction_2" src="https://github.com/user-attachments/assets/86e00f8c-707a-4361-b3ee-97bc4007fbd3" />
+<img width="3851" height="2065" alt="wuction_3" src="https://github.com/user-attachments/assets/56e844f0-894b-41c4-90c5-e080984f6e01" />
+
 
 ## 👩‍💻 개발자
 
