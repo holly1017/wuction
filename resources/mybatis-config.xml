@@ -32,7 +32,7 @@
 			    <!-- RDS 엔드포인트 + 포트 + DB명 -->
 			    <property 
 			        name="url" 
-			        value="jdbc:mariadb://wuction-db.c6le0ia4gtix.us-east-1.rds.amazonaws.com:3306/wuction"/>
+			        value="jdbc:mariadb://wuction-db.chc6mmmyaxzy.eu-north-1.rds.amazonaws.com:3306/wuction"/>
 			
 			    <!-- RDS 생성 시 설정한 계정 -->
 			    <property name="username" value="wuction"/>
